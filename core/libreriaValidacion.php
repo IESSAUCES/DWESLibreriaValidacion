@@ -481,6 +481,27 @@ class validacionFormularios {  //ELIMINA EL METODO VALIDATEDATE Y LO INCLUYE EN 
         }
         return $mensajeError; 
     }
+    /**
+     * Funcion validarArrayPorArray
+     * 
+     * Funcion que compueba que el array introducido como parametro contiene algun valor que se encuentre en el segundo array pasasado por parametro.
+     * 
+     * @author Rodrigo Geras Zurrón
+     * @param array $arrayElegido Array introducido que se va a comprobar.
+     * @param array $aOpciones Array con los posibles valores que puede contener el otro array.
+     * @return null|string Devuelve null en el caso en el que esté correcto, sino devuelve una cadena con el mensaje de error.
+     */
+    public static function validarArrayPorArray($arrayElegido, $aOpciones) {
+        $mensajeError = null; //Inicializa el mensaje de error a null.
+        if (isset($arrayElegido)) {//comprueba que el array introducido existe
+            if (!array_intersect($arrayElegido, $aOpciones)) {//comprueba si alguno de los elementos introducidos existe en el array de referencia
+                $mensajeError = " Ningun elemento se encuentra entre los posibles valores.";
+            }
+        } else {//si el array no existe
+            $mensajeError = "No se ha seleccionado ninguna opcion.";
+        }
+        return $mensajeError; //Devuelve el mensaje de error.
+    }
 }
 
 ?>
